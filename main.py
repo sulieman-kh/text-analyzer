@@ -30,15 +30,15 @@ def main():
     clust_x = 450
     Label(window, text="Кластеризация").place(x=clust_x, y=10)
 
-    Radiobutton(window, text="ДБ сканирование", variable=alg, value=0).place(x=clust_x, y=40)
+    Radiobutton(window, text="ДБ scan", variable=alg, value=0).place(x=clust_x, y=40)
     Radiobutton(window, text="K means", variable=alg, value=1).place(x=clust_x, y=70)
 
 
     class_x = 570
     Label(window, text="Классификация").place(x=class_x, y=10)
 
-    Radiobutton(window, text="K ближайшие", variable=alg, value=2).place(x=class_x, y=40)
-    Radiobutton(window, text="Наивный Байес", variable=alg, value=3).place(x=class_x, y=70)
+    Radiobutton(window, text="K nearest neighbors", variable=alg, value=2).place(x=class_x, y=40)
+    Radiobutton(window, text="Naive bayes", variable=alg, value=3).place(x=class_x, y=70)
 
 
     window.mainloop()
