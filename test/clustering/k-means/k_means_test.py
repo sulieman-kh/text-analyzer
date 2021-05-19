@@ -20,7 +20,7 @@ class KMeansTest(unittest.TestCase):
             n_samples=num_samples_total, centers=cluster_centers, n_features=num_classes, center_box=(0, 1),
             cluster_std=2
         )
-        predict = KMeans(n_clusters=num_classes).k_means_plusplus(X)
+        predict = KMeans(n_clusters=num_classes).run(X)
 
         # Generate scatter plot for training data
         colors = list(map(lambda x: '#3b4cc0' if x == 1 else '#b40426', predict))
@@ -39,7 +39,7 @@ class KMeansTest(unittest.TestCase):
         # Generate data
         X = np.array([[1, 2], [1, 4], [1, 0],
                       [10, 2], [10, 4], [10, 0]])
-        predict = KMeans(n_clusters=2, random_state=0).k_means_plusplus(X)
+        predict = KMeans(n_clusters=2, random_state=0).run(X)
         predict_list = list(predict)
 
         # Asserts:
