@@ -5,7 +5,7 @@ import unittest
 import pylab
 from sklearn.datasets import make_blobs
 
-from clustering.fcm.fcm import FCMImpl, Point
+from clustering.fcm.fcm_impl import FCMImpl, Point
 
 
 class FCMImplTest(unittest.TestCase):

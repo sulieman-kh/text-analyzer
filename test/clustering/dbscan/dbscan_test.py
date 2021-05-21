@@ -2,6 +2,8 @@ import unittest
 
 import matplotlib.pyplot as plt
 import numpy as np
+from pandas import DataFrame
+from sklearn import datasets
 from sklearn.datasets import make_blobs
 from sklearn.preprocessing import StandardScaler
 
@@ -64,6 +66,30 @@ class DBSCANTest(unittest.TestCase):
         self.assertEqual(predict_list[3], 1)
         self.assertEqual(predict_list[4], 1)
         self.assertEqual(predict_list[5], -1)
+
+    def test_iris(self):
+        iris = datasets.load_iris()
+        iris_frame = DataFrame(iris.data)
+        iris_frame.columns = iris.feature_names
+        iris_frame['target'] = iris.target
+        iris_frame['name'] = iris_frame.target.apply(lambda x: iris.target_names[x])
+        iris_frame = iris_frame.drop(columns=["name"])
+        result = DBSCAN(eps=1).run(iris_frame)
+        target_list = list(iris_frame['target'])
+
+        # Asserts:
+        first_target_cluster_cnt = target_list.count(0)
+        second_target_cluster_cnt = target_list.count(1)
+        third_target_cluster_cnt = target_list.count(2)
+
+        first_cluster_cnt = list(result).count(0)
+        second_cluster_cnt = list(result).count(1)
+        third_cluster_cnt = list(result).count(2)
+
+        print('Изначальное распределение точек по кластерам: ',
+              first_target_cluster_cnt, second_target_cluster_cnt, third_target_cluster_cnt)
+        print('Распределение точек по кластерам после кластеризации: ',
+              first_cluster_cnt, second_cluster_cnt, third_cluster_cnt)
 
 
 if __name__ == '__main__':
